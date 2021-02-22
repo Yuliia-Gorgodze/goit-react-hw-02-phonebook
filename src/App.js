@@ -1,0 +1,60 @@
+import React, {Component} from 'react';
+import { render } from 'react-dom';
+import AddNameContact from './components/Form'
+import ContactList from './components/ContactList'
+import shortid from 'shortid';
+import Filter from './components/Filter'
+import styles from './components/styles.module.css'
+class App extends Component {
+    state = {
+        contacts: [ 
+        ],
+        filter: ''
+      }
+  
+checkContact = name =>{
+    return this.state.contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())
+}
+   addContact = ({name, number}) =>{
+       const contact = {
+           id: shortid.generate(),
+           name, 
+           number
+       }
+       if(this.checkContact(name)){
+           alert('Такой контакт уже есть !!!!')
+           return
+       }else{
+        this.setState(({contacts}) => ({
+            contacts: [contact, ...contacts],
+        }))
+       }
+   console.log(this.state.contacts)
+   }
+   deleteCantact = (id) => {
+this.setState(prevState => ({
+    contacts: prevState.contacts.filter(contact => contact.id !== id),
+}))
+   }
+   inputChange = event => {
+    const {currentTarget} = event;
+    this.setState({[currentTarget.name]: currentTarget.value})
+}
+   getVisibleContact = () => {
+   const normalizedFilter = this.state.filter.toLowerCase();
+    return this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter))
+   }
+render(){
+  return(
+    
+    <div>
+        <h1>Телефонная книга</h1>
+        <AddNameContact formSabmit={this.addContact}/>
+        <h2>Мои контакты: </h2>
+        <Filter inputChange={this.inputChange} state={this.state.filter}/>
+        <ContactList contacts={this.getVisibleContact()} deleteCantact={this.deleteCantact}/>
+    </div>
+  )
+}
+}
+export default App;
