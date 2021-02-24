@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import { render } from 'react-dom';
+import shortid from 'shortid';
+//components
 import AddNameContact from './components/Form'
 import ContactList from './components/ContactList'
-import shortid from 'shortid';
 import Filter from './components/Filter'
 import styles from './components/styles.module.css'
+
 class App extends Component {
     state = {
         contacts: [ 
@@ -37,8 +38,8 @@ this.setState(prevState => ({
 }))
    }
    inputChange = event => {
-    const {currentTarget} = event;
-    this.setState({[currentTarget.name]: currentTarget.value})
+    const {name, value} = event.currentTarget;
+    this.setState({[name]: value})
 }
    getVisibleContact = () => {
    const normalizedFilter = this.state.filter.toLowerCase();

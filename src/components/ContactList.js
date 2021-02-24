@@ -16,7 +16,7 @@ const ContactList = ({contacts, deleteCantact}) => {
     )
 }
  export default ContactList;
-//  class={styles.cotactDelete}
+
  ContactList.propTypes = {
     contacts: propTypes.array.isRequired,
     deleteCantact: propTypes.func.isRequired
