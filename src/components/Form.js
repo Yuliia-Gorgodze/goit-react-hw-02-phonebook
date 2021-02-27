@@ -27,10 +27,10 @@ class AddNameContact extends Component {
         return (
             <form class={styles.form} onSubmit={this.addContact}>
                 <label class={styles.input}>
-                Введите имя контакта: <input class={styles.inputValue} type='text' name='name' value={this.state.name} onChange={this.inputChange} id={this.nameInputId}></input>
+                Введите имя контакта: <input class={styles.inputValue} type='text' name='name' value={this.state.name} onChange={this.inputChange} ></input>
                 </label>
                 <label class={styles.input}>
-                Введите номер контакта: <input class={styles.inputValue} type='text' name='number' value={this.state.number} onChange={this.inputChange} id={this.numberInputId}></input>
+                Введите номер контакта: <input class={styles.inputValue} type='text' name='number' value={this.state.number} onChange={this.inputChange} ></input>
                 </label>
                 <button class={styles.buttonAddContact} type='submit'>Добавить в контакты</button>
             </form>
